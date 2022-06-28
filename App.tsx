@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 
@@ -19,8 +19,22 @@ import { StyleSheet, Text, View } from 'react-native';
  * 
  */
 export default function App() {
+    /**
+     * 
+     * because react works in functions, each time the function is called variables will not remember
+     * eachother, in order to keep state of a functional component, we use useState(), it returns an array of the 
+     * value, and the function to set the state, javascript allows u to define variables like so, let [x, y] = [1,2]
+     * now x and y can be called seperataley 
+     * 
+     */
+    const [isClicked, setClicked] = useState<boolean>(false)
 
 
+
+    const clickHandler = () => {
+        // set clicked the opposite from before
+        setClicked(!isClicked)
+    }
 
 
     /**
