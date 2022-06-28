@@ -35,7 +35,7 @@ export default function App() {
         <View style={styles.container}> {/**  the view tag, you can call components in here*/}
             <Text>Open up App.tsx to start working on your app!</Text>
             <Title name='Welcome to nam'>
-                <Text>>Start here</Text>
+                <Text>Start here</Text>
             </Title>
         </View>
     );
