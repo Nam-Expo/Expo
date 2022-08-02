@@ -1,0 +1,32 @@
+{
+    "message": "Request failed with status code 505",
+    "name": "AxiosError",
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+            "FormData": null
+        },
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        },
+        "url": "http://10.0.0.234:8080/testAuth",
+        "method": "get"
+    },
+    "code": "ERR_BAD_RESPONSE",
+    "status": 505
+}
