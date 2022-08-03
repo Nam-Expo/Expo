@@ -10,7 +10,7 @@ export default function App() {
     useMemo(() => {
         testNetwork()
             .then(console.log)
-            .catch(console.log)
+            .catch((error) => console.log(error))
     },[])
 
     return (

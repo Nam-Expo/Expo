@@ -12,3 +12,7 @@ export type User = {
     password: string
     type: AccountType
 }
+
+export type Cookie = {
+    auth: string
+}

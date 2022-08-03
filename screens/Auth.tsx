@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { View, Text } from 'react-native'
 import { Button, HelperText } from "react-native-paper"
 import { Input } from "../components"
-import { login } from '../network'
+import { login, testNetwork } from '../network'
 
 type LoginFeild = {
     username: string
@@ -20,6 +20,7 @@ const Login = (props: any) => {
         console.log(forum)
         login(forum).then((res) => {    
             console.log(JSON.stringify(res))
+            testNetwork().then(console.log).catch(console.log)
         }).catch(error => {
             setError(error)
         })

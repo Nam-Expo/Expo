@@ -1,6 +1,20 @@
 {
-    "message": "Request failed with status code 505",
-    "name": "AxiosError",
+    "data": "ok",
+    "status": 200,
+    "headers": {
+        "access-control-allow-methods": "GET, POST, OPTIONS",
+        "access-control-allow-origin": "*",
+        "connection": "keep-alive",
+        "content-length": "2",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 03 Aug 2022 02:11:04 GMT",
+        "etag": "W/\"2-eoX0dku9ba8cNUXvu/DyeabcC+s\"",
+        "keep-alive": "timeout=5",
+        "set-cookie": [
+            "auth=j%3A%7B%22username%22%3A%22magnusreeves%22%2C%22token%22%3A%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZ251c3JlZXZlcyIsInBhc3N3b3JkIjoiNDRmNjY2YTdiMjk4ZTFlOWUwYjM3ZWM0NDNkZjAwNzZjOWZhYmMzNGVmMDY3NDY2MDA4OWVmYTNhZDE3MjkzNSIsImlhdCI6MTY1OTQ5MjY2NCwiZXhwIjoxNjU5NTI1MDY0fQ.5hjatIiWn-y5kuJ2b4TbUIoGiYOmXlOsDEpU68-yQl8%22%7D; Path=/"
+        ],
+        "x-powered-by": "Express"
+    },
     "config": {
         "transitional": {
             "silentJSONParsing": true,
@@ -22,11 +36,91 @@
             "FormData": null
         },
         "headers": {
-            "Accept": "application/json, text/plain, */*"
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json"
         },
-        "url": "http://10.0.0.234:8080/testAuth",
-        "method": "get"
+        "method": "post",
+        "url": "http://10.0.0.234:8080/login",
+        "data": "{\"username\":\"magnusreeves\",\"password\":\"Minus12345\"}"
     },
-    "code": "ERR_BAD_RESPONSE",
-    "status": 505
+    "request": {
+        "UNSENT": 0,
+        "OPENED": 1,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "DONE": 4,
+        "readyState": 4,
+        "status": 200,
+        "timeout": 0,
+        "withCredentials": true,
+        "upload": {},
+        "_aborted": false,
+        "_hasError": false,
+        "_method": "POST",
+        "_perfKey": "network_XMLHttpRequest_http://10.0.0.234:8080/login",
+        "_response": "ok",
+        "_url": "http://10.0.0.234:8080/login",
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_incrementalEvents": false,
+        "_performanceLogger": {
+            "_timespans": {
+                "network_XMLHttpRequest_http://10.0.0.234:8080/testAuth": {
+                    "startTime": 1659492505071,
+                    "endTime": 1659492505120,
+                    "totalTime": 49
+                },
+                "network_XMLHttpRequest_http://10.0.0.234:19000/logs": {
+                    "startTime": 1659492505130,
+                    "endTime": 1659492505158,
+                    "totalTime": 28
+                },
+                "network_XMLHttpRequest_http://10.0.0.234:8080/login": {
+                    "startTime": 1659492569810,
+                    "endTime": 1659492570840,
+                    "totalTime": 1030
+                }
+            },
+            "_extras": {},
+            "_points": {
+                "initializeCore_start": 1659492504888,
+                "initializeCore_end": 1659492504926
+            },
+            "_pointExtras": {},
+            "_closed": false
+        },
+        "responseHeaders": {
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+            "Set-Cookie": "auth=j%3A%7B%22username%22%3A%22magnusreeves%22%2C%22token%22%3A%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZ251c3JlZXZlcyIsInBhc3N3b3JkIjoiNDRmNjY2YTdiMjk4ZTFlOWUwYjM3ZWM0NDNkZjAwNzZjOWZhYmMzNGVmMDY3NDY2MDA4OWVmYTNhZDE3MjkzNSIsImlhdCI6MTY1OTQ5MjY2NCwiZXhwIjoxNjU5NTI1MDY0fQ.5hjatIiWn-y5kuJ2b4TbUIoGiYOmXlOsDEpU68-yQl8%22%7D; Path=/",
+            "Connection": "keep-alive",
+            "Content-Type": "text/html; charset=utf-8",
+            "X-Powered-By": "Express",
+            "Etag": "W/\"2-eoX0dku9ba8cNUXvu/DyeabcC+s\"",
+            "Access-Control-Allow-Origin": "*",
+            "Date": "Wed, 03 Aug 2022 02:11:04 GMT",
+            "Content-Length": "2",
+            "Keep-Alive": "timeout=5"
+        },
+        "_requestId": null,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json"
+        },
+        "_responseType": "",
+        "_sent": true,
+        "_lowerCaseResponseHeaders": {
+            "access-control-allow-methods": "GET, POST, OPTIONS",
+            "set-cookie": "auth=j%3A%7B%22username%22%3A%22magnusreeves%22%2C%22token%22%3A%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZ251c3JlZXZlcyIsInBhc3N3b3JkIjoiNDRmNjY2YTdiMjk4ZTFlOWUwYjM3ZWM0NDNkZjAwNzZjOWZhYmMzNGVmMDY3NDY2MDA4OWVmYTNhZDE3MjkzNSIsImlhdCI6MTY1OTQ5MjY2NCwiZXhwIjoxNjU5NTI1MDY0fQ.5hjatIiWn-y5kuJ2b4TbUIoGiYOmXlOsDEpU68-yQl8%22%7D; Path=/",
+            "connection": "keep-alive",
+            "content-type": "text/html; charset=utf-8",
+            "x-powered-by": "Express",
+            "etag": "W/\"2-eoX0dku9ba8cNUXvu/DyeabcC+s\"",
+            "access-control-allow-origin": "*",
+            "date": "Wed, 03 Aug 2022 02:11:04 GMT",
+            "content-length": "2",
+            "keep-alive": "timeout=5"
+        },
+        "_subscriptions": [],
+        "responseURL": "http://10.0.0.234:8080/login"
+    }
 }
