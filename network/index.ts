@@ -1,8 +1,28 @@
 import { connect } from "./ServerHandler"
 import { RequestBuilder } from "./RequestBuilder"
 import { LoginUser, User } from "../types";
+import { getItem } from "../storage/local";
 
-
+export const testAuthentication = () => (
+    new Promise<void>((resolve, reject) => { 
+        testNetwork()
+            .then(() => resolve())
+            .catch(async (error) => {
+                if(error === 'Unauthorized Access'){
+                    let user: LoginUser = await getItem('login')
+                    if(user) {
+                        login(user)
+                            .then(() => resolve())
+                            .catch(reject)
+                    }
+                    else {
+                        reject()
+                    }
+                }
+            })
+       
+    })
+)
 
 export const login = (user: LoginUser) => {
     let req = new RequestBuilder()

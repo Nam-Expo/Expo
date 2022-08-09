@@ -3,7 +3,7 @@ import axios, { AxiosError, AxiosResponse } from "axios"
 import { clearItem, saveItem, getItem } from "../storage/local"
 import { Cookie } from "../types"
 
-const address = 'http://10.0.0.234:8080'
+const address = 'http://192.168.2.223:8080'
 
 interface ErrorCodesADT {
     [key: number | string]: string    
@@ -25,40 +25,38 @@ const ErrorCodes: ErrorCodesADT = Object.freeze({
     590: 'unknown'
 })
 
-export const connect = (requestor: Requestor) => {
+export const connect = (requestor: Requestor): Promise<string> => {
     return new Promise(async (resolve, reject) => {
-        let obj = requestor.toObject()
-
+        let request = requestor.toObject()
+    
         let cookie = await getItem('auth')
-        console.log(cookie)
+        let header = {
+            ...((cookie) ? { 
+                "Cookie": cookie
+            } : {}),
+            "Content-Type": "application/json"
+        }
+
         axios({
-            method: obj.method,
-            url: address + obj.url, 
-            data: obj.body,
-            headers: {
-                ...((await getItem('auth')) ? { 
-                    Cookie: `auth=${cookie.auth};` 
-                } : {})
-            }
+            method: request.method,
+            url: address + request.url, 
+            data: request.body,
+            headers: header
         })
             .then((response: AxiosResponse )=> {
-                let cookieHeader = response.headers["set-cookie"]
-                console.log(cookieHeader)
-                let cookie = cookieParser(cookieHeader![0] as unknown as string)
-                console.log(cookie)
-
-                if(cookie.auth){
-                    saveItem('auth', cookie.auth)
-                }
-                else{
-                    clearItem('auth')
+                console.log("response", response)
+                let SetCookie = response.headers["Set-cookie"]
+            
+                if(SetCookie){
+                    saveItem('auth', SetCookie)
                 }
                 resolve(response.data)
             })
             .catch((error) => {   
+                console.log(error)
                 //@ts-ignore
                 let code = error.toJSON().status
-                
+                clearItem('auth')
                 reject(
                     ErrorCodes.hasOwnProperty(code) ?
                     ErrorCodes[code] :
@@ -70,7 +68,6 @@ export const connect = (requestor: Requestor) => {
 
 const cookieParser = (cookieHeader: string): Cookie => {
  
-
     // Get each individual key-value pairs
     // from the cookie string
     // This returns a new array

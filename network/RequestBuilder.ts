@@ -1,6 +1,7 @@
 import { notNull } from "./Validations";
 
 type Req = { url: string, method: string, body: any }
+type Method = "POST" | 'GET'
 
 export class Requestor {
     url: string;
@@ -44,7 +45,7 @@ export class RequestBuilder {
         return this
     }
 
-    setMethod(method: string) {
+    setMethod(method: Method) {
         this.method = method
         return this
     }
@@ -58,7 +59,7 @@ export class RequestBuilder {
         return new Requestor(
             this.url as string,
             this.method as string,
-            this.body,
+            this.body as any,
         )
     }
 }

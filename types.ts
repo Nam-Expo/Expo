@@ -16,3 +16,8 @@ export type User = {
 export type Cookie = {
     auth: string
 }
+
+export type AuthStackParamList = {
+    Login: undefined;
+    Signup: undefined
+};

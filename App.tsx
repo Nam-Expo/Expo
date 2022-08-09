@@ -1,23 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useMemo } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Login } from './screens/Auth';
-import { testNetwork } from './network'
+import React, { useState, useMemo, useContext } from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthenticationStack from './stacks/auth'
+import AppLoading from "expo-app-loading";
+import { testAuthentication, testNetwork } from './network';
+import { AuthenticationProvider, AuthContext } from './contexts/AuthContext';
 
-export default function App() {
-    const [isClicked, setClicked] = useState<boolean>(false)
 
-    useMemo(() => {
-        testNetwork()
-            .then(console.log)
-            .catch((error) => console.log(error))
-    },[])
+const StackManager = () => {
+    const { loggedIn, setLoggedIn } = useContext(AuthContext)
 
     return (
-        <SafeAreaView>
-            <Login />
-        </SafeAreaView>
-   
+        <>
+            <StatusBar
+                backgroundColor="#61dafb"
+            />
+            <NavigationContainer>
+                {loggedIn ? (
+                    <></>
+                ) : (
+                    <AuthenticationStack/>
+                )}
+            </NavigationContainer>
+        </>
+    )
+}
+
+export default function App() {
+    const [loading, setLoading] = useState<boolean>(true)
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+    return (
+        <>
+            {loading ? (
+               <AppLoading
+                    startAsync={async () => {
+                        await Promise.all([
+                            new Promise<void>((resolve) => {
+                                testAuthentication().then(() => {
+                                    setLoggedIn(true)
+                                    resolve()
+                                }).catch(() => { 
+                                    setLoggedIn(false)
+                                    resolve()
+                                })
+                            })
+                        ])
+                    }}
+                    onFinish={() => {
+                        setLoading(false)
+                    }}
+                    onError={(error) => console.log(error)}
+                />
+            ) : (
+                <AuthenticationProvider loggedIn={loggedIn}>
+                    <StackManager/>
+                </AuthenticationProvider>
+            )}
+        </>
     )
 }
 
